@@ -8,11 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("authToken");
     const currentUserId = localStorage.getItem("currentUserId");
 
-    if (!token || !currentUserId) {
-      console.log("User is not logged in.");
-      alert("Please log in first.");
-      window.location.href = "login.html"; // Redirect to login page
-      return;
+    
     }
     try {
       const response = await fetch("http://localhost:5001/questions");
