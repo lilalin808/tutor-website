@@ -1,3 +1,5 @@
+
+
 // Import necessary Firebase modules (modular imports)
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth'; // Import the auth module
@@ -46,7 +48,7 @@ submit.addEventListener("click",function(event){
   event.preventDefault()
     //inputs
 const email = document.getElementById("email").value;
-const passwrod = document.getElementById("password").value;
+const password = document.getElementById("password").value;
   
   createUserWithEmailAndPassword(auth,email,password)
   .then((userCredential) => {
