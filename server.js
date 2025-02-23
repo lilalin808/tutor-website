@@ -248,45 +248,41 @@ app.post("/save-email", (req, res) => {
 
 let users = [];
 // Signup route
-app.post("/signup", async (req, res) => {
-  const { email } = req.body;
+app.post('/signup', async (req, res) => {
+  const { email, password } = req.body;
 
-  if (!email) {
-    return res
-      .status(400)
-      .json({ success: false, message: "Email  are required" });
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Email and password are required.' });
   }
 
-  // Check if the user already exists
-  const existingUser = users.find((user) => user.email === email);
-  if (existingUser) {
-    return res
-      .status(400)
-      .json({ success: false, message: "User already exists" });
+  try {
+    // Check if the user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Email already in use.' });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new user
+    const newUser = new User({
+      email,
+      password: hashedPassword,
+    });
+
+    // Save the new user to the database
+    await newUser.save();
+
+    // Send a JSON response with success message
+    res.status(201).json({ message: 'User created successfully!' });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
   }
-
-  // Hash the password
-  const hashedPassword = await bcrypt.hash(password, 10);
-
-  // Create new user object
-  const newUser = {
-    id: users.length + 1, // Simple increment ID for new users (in production, use a unique ID from the database)
-    email,
-    password: hashedPassword,
-  };
-
-  // Add new user to the users array
-  users.push(newUser);
-
-  // Generate JWT token
-  const token = jwt.sign({ userId: newUser.id }, "your-secret-key", {
-    expiresIn: "1h",
-  });
-
-  res.status(201).json({ success: true, userId: newUser.id, token });
 });
 
-// Route to handle user sign-up
 
 // Route to handle login
 app.post("/login", async (req, res) => {
