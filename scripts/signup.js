@@ -1,24 +1,36 @@
-document
-  .getElementById("signupForm")
-  .addEventListener("submit", async function (e) {
-    e.preventDefault();
+document.getElementById('signupForm').addEventListener('submit', async function(event) {
+  event.preventDefault(); // Prevent the form from submitting normally
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+  // Get the form data
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
 
-    const response = await fetch("http://localhost:5001/signup", {
-      method: "POST",
+  // Create an object to send in the POST request
+  const userData = {
+    email: email,
+    password: password,
+  };
+
+  try {
+    // Send the data to the backend using fetch
+    const response = await fetch('/signup', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify(userData),
     });
 
-    const data = await response.json();
-    if (data.success) {
-      // Redirect to login page or show success message
-      window.location.href = "login.html";
+    const result = await response.json();
+    if (response.ok) {
+      // If the backend successfully processes the signup, redirect to login page
+      window.location.href = '/login'; 
     } else {
-      alert("Error: " + data.message);
+      // Handle errors returned from the backend (e.g., invalid data)
+      alert(result.message || 'Signup failed');
     }
-  });
+  } catch (error) {
+    console.error('Error:', error);
+    alert('There was an error with the signup process');
+  }
+});
