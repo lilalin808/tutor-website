@@ -32,6 +32,7 @@ const passwrod = document.getElementById("password").value;
     //signed up
     const user = userCredential.user;
     alert("Signing Up")
+    window.location.href="login.html";
     //...
   })
   .catch((error) => {
