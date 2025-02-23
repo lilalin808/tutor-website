@@ -2,32 +2,27 @@
 <html lang="en">
 
 <head>
-  <meta charset-"UTF-8">
+  <meta charset="UTF-8">
   <title>Sign Up</title>
   <link rel="stylesheet" href="styles/style.css">
   <script type="module" src="scripts/signup.js" defer></script>
-  <!-- Add Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
-
 </head>
 
 <body>
   <form>
     <h3>Sign Up</h3>
 
-    <label for="email">Username</label>
-    <input type="email" placeholder="Email" id="email"
-    required>
+    <label for="email">Email</label>
+    <input type="email" placeholder="Email" id="email" required>
 
     <label for="password">Password</label>
-    <input type="password" placeholder="Password" id="password"
-      required>
+    <input type="password" placeholder="Password" id="password" required>
+
     <button id="submit" type="submit">Sign Up</button>
 
     <div class="form">
       <p>Already Signed Up?
-      <span> <a href="login.html">Login Here</a></span>
+        <span><a href="login.html">Login Here</a></span>
       </p>
     </div>
   </form>
