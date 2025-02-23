@@ -1,47 +1,22 @@
-<form id="signupForm">
-  <label for="email">Email</label>
-  <input type="email" id="email" required />
+<!DOCTYPE html>
+<html lang="en">
 
-  <label for="password">Password</label>
-  <input type="password" id="password" required />
+<head>
+  <meta charset-"UTF-8">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
 
-  <button type="submit">Sign Up</button>
-</form>
+<body>
+  <form>
+    <h3>Sign Up</h3>
 
-<script >document.getElementById('signupForm').addEventListener('submit', async function(event) {
-  event.preventDefault(); // Prevent the form from submitting normally
+    <label for="email">Username</label>
+    <input type="email" placeholder="Email" id="email"
+    required>
 
-  // Get the form data
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-
-  // Create an object to send in the POST request
-  const userData = {
-    email: email,
-    password: password,
-  };
-
-  try {
-    // Send the data to the backend using fetch
-    const response = await fetch('http://localhost:5001/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    });
-
-    const result = await response.json();
-    if (response.ok) {
-      // If the backend successfully processes the signup, redirect to login page
-      window.location.href = '/login.html'; 
-    } else {
-      // Handle errors returned from the backend (e.g., invalid data)
-      alert(result.message || 'Signup failed');
-    }
-  } catch (error) {
-    console.error('Error:', error);
-    alert('There was an error with the signup process');
-  }
-});
-</script>
+    <label for="password">Password</label>
+    <input type="password" placeholder="Password" id="password"
+      required>
+  </form>
+</body>
