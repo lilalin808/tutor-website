@@ -24,7 +24,7 @@ document.getElementById('signupForm').addEventListener('submit', async function(
     const result = await response.json();
     if (response.ok) {
       // If the backend successfully processes the signup, redirect to login page
-      window.location.href = '/login'; 
+      window.location.href = '/login.html'; 
     } else {
       // Handle errors returned from the backend (e.g., invalid data)
       alert(result.message || 'Signup failed');
