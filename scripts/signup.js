@@ -10,7 +10,7 @@
  const firebaseConfig = {
  //YOUR COPIED FIREBASE PART SHOULD BE HERE
  //WATCH THIS VIDEO TO LEARN WHAT TO PUT HERE   https://youtu.be/_Xczf06n6x0
-   const firebaseConfig = {
+  
     apiKey: "AIzaSyBmS3PF33c4BHzgjKuM0LUSu_wpIFQSNvk",
     authDomain: "peer-tutor-a1076.firebaseapp.com",
     projectId: "peer-tutor-a1076",
