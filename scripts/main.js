@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const currentUserId = localStorage.getItem("currentUserId");
 
     
-    }
+    
     try {
       const response = await fetch("http://localhost:5001/questions");
       const questions = await response.json();
